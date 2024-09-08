@@ -121,7 +121,7 @@
         <label for="creaminess">Creaminess (1-5):</label>
         <input type="number" id="creaminess" name="creaminess" min="1" max="5" required>
 
-        <label for="bitterness">Bitterness (1-5):</label>
+        <label for="bitterness">Speed (how fast did they make it?) (1-5):</label>
         <input type="number" id="bitterness" name="bitterness" min="1" max="5" required>
 
         <label for="temperature">Temperature (1-5):</label>
@@ -141,34 +141,23 @@
     submitButton.style.backgroundColor = '#ff0000'; // Change to red or any color you prefer
 
     // Handle form submission
-    var formData = {
-        name: document.getElementById('name').value,
-        location: document.getElementById('location').value,
-        richness: document.getElementById('richness').value,
-        sweetness: document.getElementById('sweetness').value,
-        creaminess: document.getElementById('creaminess').value,
-        bitterness: document.getElementById('bitterness').value,
-        temperature: document.getElementById('temperature').value
-    };
-
-    fetch('https://script.google.com/macros/s/AKfycby_3K-qsBqYsODDwsSWqLEvhgJapi4TSvE3VwMKMfQYrt-Hqr7qjXuJiSH1i9H56Q/exec', {
-        method: 'POST',
-        body: JSON.stringify(formData),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(response => {
-        alert("Form submitted successfully!");
-        // Revert button color after 2 seconds
-        setTimeout(function() {
-            submitButton.style.backgroundColor = originalColor;
-        }, 2000); // 2000 milliseconds = 2 seconds
-    }).catch(error => {
-        alert("There was an error submitting the form.");
-        // Optionally revert button color on error
-        submitButton.style.backgroundColor = originalColor;
-    });
+    var formData = new URLSearchParams({
+    name: document.getElementById('name').value,
+    location: document.getElementById('location').value,
+    richness: document.getElementById('richness').value,
+    sweetness: document.getElementById('sweetness').value,
+    creaminess: document.getElementById('creaminess').value,
+    bitterness: document.getElementById('bitterness').value,
+    temperature: document.getElementById('temperature').value
 });
+
+fetch('https://script.google.com/macros/s/AKfycby2SOTLEfSWrob7xOI4XJBVPnOTGD1DS1AbuKdfh5cP2Ok5vkpwAGtwj6iRxJ65pSk/exec', {
+    method: 'POST',
+    body: formData,
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
+})
     </script>
 </div>
 
