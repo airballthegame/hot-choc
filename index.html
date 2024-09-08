@@ -45,7 +45,7 @@
         }
 
     .container {
-        width: 100%;
+        width: 100vh;
         height: 100vh;
         background-color: #fff;
         padding: 30px;
@@ -218,25 +218,25 @@
         });
     </script>
     <script>
-        const darkModeSwitch = document.getElementById('darkModeSwitch');
-    
-        // Check if dark mode is saved in localStorage
-        if (localStorage.getItem('darkMode') === 'enabled') {
+    const darkModeSwitch = document.getElementById('darkModeSwitch');
+
+    // Check if dark mode is saved in localStorage
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+        darkModeSwitch.checked = true;
+    }
+
+    // Toggle dark mode
+    darkModeSwitch.addEventListener('change', () => {
+        if (darkModeSwitch.checked) {
             document.body.classList.add('dark-mode');
-            darkModeSwitch.checked = true;
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            document.body.classList.remove('dark-mode');
+            localStorage.setItem('darkMode', 'disabled');
         }
-    
-        // Toggle dark mode
-        darkModeSwitch.addEventListener('change', () => {
-            if (darkModeSwitch.checked) {
-                document.body.classList.add('dark-mode');
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                document.body.classList.remove('dark-mode');
-                localStorage.setItem('darkMode', 'disabled');
-            }
-        });
-    </script>
+    });
+</script>
 </div>
 
 </body>
