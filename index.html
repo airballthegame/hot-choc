@@ -51,6 +51,48 @@
         padding: 30px;
         animation: fadeIn 1s ease-in-out;
     }
+    .toggle-container {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .toggle-label {
+        margin-right: 10px;
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .toggle-switch {
+        position: relative;
+        width: 60px;
+        height: 34px;
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: #ddd;
+        border-radius: 34px;
+        cursor: pointer;
+        outline: none;
+        transition: background-color 0.3s;
+    }
+
+    .toggle-switch:checked {
+        background-color: #5a3e36;
+    }
+
+    .toggle-switch:checked::before {
+        transform: translateX(26px);
+    }
+
+    .toggle-switch::before {
+        content: "";
+        position: absolute;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background-color: white;
+        transition: transform 0.3s;
+    }
 
     h1 {
         text-align: center;
@@ -119,9 +161,9 @@
 
 <div class="container">
     <h1>Hot Chocolate Tasting</h1>
-    <div class="dark-mode-toggle">
-        <label for="darkModeSwitch">Dark Mode:</label>
-        <input type="checkbox" id="darkModeSwitch">
+    <div class="toggle-container">
+        <label for="darkModeSwitch" class="toggle-label">Dark Mode:</label>
+        <input type="checkbox" id="darkModeSwitch" class="toggle-switch">
     </div>
     <form id="hotChocolateForm" method="POST">
         <!-- User's Name -->
