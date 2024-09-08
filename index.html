@@ -7,85 +7,85 @@
     <!-- Link to the external CSS file -->
     <style>
         body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f0f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-.container {
-    max-width: 600px;
-    width: 100%;
-    background-color: #fff;
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 1s ease-in-out;
-}
-
-h1 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #5a3e36;
-}
-
-form label {
-    display: block;
-    font-size: 1.1rem;
-    color: #333;
-    margin-bottom: 8px;
-    transition: color 0.3s;
-}
-
-input, select, button {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    box-sizing: border-box;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    font-size: 1rem;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-input:focus, select:focus {
-    border-color: #5a3e36;
-    box-shadow: 0 0 5px rgba(90, 62, 54, 0.5);
-    outline: none;
-}
-
-button {
-    background-color: #5a3e36;
-    color: #fff;
-    font-size: 1.2rem;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-button:hover {
-    background-color: #4a2d25;
-    transform: translateY(-2px);
-}
-
-button:active {
-    transform: translateY(0);
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+    .container {
+        max-width: 600px;
+        width: 100%;
+        background-color: #fff;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 1s ease-in-out;
     }
-    to {
-        opacity: 1;
+
+    h1 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: #5a3e36;
+    }
+
+    form label {
+        display: block;
+        font-size: 1.1rem;
+        color: #333;
+        margin-bottom: 8px;
+        transition: color 0.3s;
+    }
+
+    input, select, button {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        box-sizing: border-box;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-size: 1rem;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input:focus, select:focus {
+        border-color: #5a3e36;
+        box-shadow: 0 0 5px rgba(90, 62, 54, 0.5);
+        outline: none;
+    }
+
+    button {
+        background-color: #5a3e36;
+        color: #fff;
+        font-size: 1.2rem;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+        background-color: #4a2d25;
+        transform: translateY(-2px);
+    }
+
+    button:active {
         transform: translateY(0);
     }
-}
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
     </style>
 </head>
 <body>
@@ -93,7 +93,7 @@ button:active {
 <div class="container">
     <h1>Hot Chocolate Tasting</h1>
 
-    <form action="https://formspree.io/f/xgvwqqvl" method="POST">
+    <form id="hotChocolateForm" method="POST">
         <!-- User's Name -->
         <label for="name">Your Name:</label>
         <input type="text" id="name" name="name" placeholder="Enter your name" required>
@@ -121,6 +121,30 @@ button:active {
         <!-- Submit Button -->
         <button type="submit">Submit Form</button>
     </form>
+    <script>
+        document.getElementById('hotChocolateForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var formData = {
+                name: document.getElementById('name').value,
+                location: document.getElementById('location').value,
+                richness: document.getElementById('richness').value,
+                sweetness: document.getElementById('sweetness').value,
+                creaminess: document.getElementById('creaminess').value,
+                bitterness: document.getElementById('bitterness').value,
+                temperature: document.getElementById('temperature').value
+            };
+
+            fetch('https://script.google.com/macros/s/AKfycbw3a6N9IQwVUH8v0c-GLdO30eiafwoI0lXAOlbkG4yhR2Jc_Xpsg65i8F4dJPBysgM/exec', {
+                method: 'POST',
+                body: JSON.stringify(formData)
+            }).then(response => {
+                alert("Form submitted successfully!");
+            }).catch(error => {
+                alert("There was an error submitting the form.");
+            });
+        });
+    </script>
 </div>
 
 </body>
