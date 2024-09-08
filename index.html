@@ -69,7 +69,7 @@
 
     button:hover {
         background-color: #4a2d25;
-        transform: translateY(-5px);
+        transform: translateY(-2px);
     }
 
     button:active {
@@ -112,14 +112,14 @@
         <label for="creaminess">Creaminess (1-5):</label>
         <input type="number" id="creaminess" name="creaminess" min="1" max="5" required>
 
-        <label for="bitterness">Speed (How fast it was made) (1-5):</label>
+        <label for="bitterness">Bitterness (1-5):</label>
         <input type="number" id="bitterness" name="bitterness" min="1" max="5" required>
 
         <label for="temperature">Temperature (1-5):</label>
         <input type="number" id="temperature" name="temperature" min="1" max="5" required>
 
         <!-- Submit Button -->
-        <button id="submit" type="submit">Submit Form</button>
+        <button type="submit">Submit Form</button>
     </form>
     <script>
         document.getElementById('hotChocolateForm').addEventListener('submit', function(e) {
@@ -139,37 +139,9 @@
                 method: 'POST',
                 body: JSON.stringify(formData)
             }).then(response => {
-                document.getElementById('myButton').addEventListener('click', function() {
-                 // Store the original color and text
-                const originalColor = this.style.backgroundColor;
-                const originalText = this.textContent;
-            
-                // Change button color and text
-                this.style.backgroundColor = 'green';
-                this.textContent = 'Form submitted!';
-            
-                // Reset the button after 2 seconds
-                setTimeout(() => {
-                    this.style.backgroundColor = originalColor;
-                    this.textContent = originalText;
-                }, 2000); // 2000 milliseconds = 2 seconds
-            });
+                alert("Form submitted successfully!");
             }).catch(error => {
-                document.getElementById('myButton').addEventListener('click', function() {
-                 // Store the original color and text
-                const originalColor = this.style.backgroundColor;
-                const originalText = this.textContent;
-            
-                // Change button color and text
-                this.style.backgroundColor = 'red';
-                this.textContent = 'Error submitting.';
-            
-                // Reset the button after 2 seconds
-                setTimeout(() => {
-                    this.style.backgroundColor = originalColor;
-                    this.textContent = originalText;
-                }, 2000); // 2000 milliseconds = 2 seconds
-            });
+                alert("There was an error submitting the form.");
             });
         });
     </script>
