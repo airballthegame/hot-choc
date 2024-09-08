@@ -7,17 +7,14 @@
     <!-- Link to the external CSS file -->
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Verdana', sans-serif;
             background-color: #f0f0f5;
-            display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             margin: 0;
         }
 
     .container {
-        max-width: 600px;
         width: 100%;
         background-color: #fff;
         border-radius: 15px;
@@ -103,20 +100,20 @@
         <input type="text" id="location" name="location" placeholder="Enter the restaurant's location" required>
 
         <!-- Hot Chocolate Descriptors -->
-        <label for="richness">Richness (1-5):</label>
-        <input type="number" id="richness" name="richness" min="1" max="5" required>
+        <label for="richness">Richness (1-10):</label>
+        <input type="number" id="richness" name="richness" min="1" max="10" required>
 
-        <label for="sweetness">Sweetness (1-5):</label>
-        <input type="number" id="sweetness" name="sweetness" min="1" max="5" required>
+        <label for="sweetness">Sweetness (1-10):</label>
+        <input type="number" id="sweetness" name="sweetness" min="1" max="10" required>
 
-        <label for="creaminess">Creaminess (1-5):</label>
-        <input type="number" id="creaminess" name="creaminess" min="1" max="5" required>
+        <label for="creaminess">Creaminess (1-10):</label>
+        <input type="number" id="creaminess" name="creaminess" min="1" max="10" required>
 
-        <label for="bitterness">Bitterness (1-5):</label>
-        <input type="number" id="bitterness" name="bitterness" min="1" max="5" required>
+        <label for="bitterness">Speed (how fast was it made?) (1-10):</label>
+        <input type="number" id="bitterness" name="bitterness" min="1" max="10" required>
 
-        <label for="temperature">Temperature (1-5):</label>
-        <input type="number" id="temperature" name="temperature" min="1" max="5" required>
+        <label for="temperature">Temperature (1-10):</label>
+        <input type="number" id="temperature" name="temperature" min="1" max="10" required>
 
         <!-- Submit Button -->
         <button type="submit">Submit Form</button>
