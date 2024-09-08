@@ -128,31 +128,47 @@
         <input type="number" id="temperature" name="temperature" min="1" max="5" required>
 
         <!-- Submit Button -->
-        <button type="submit">Submit Form</button>
+        <button type="submit" id="submitButton">Submit Form</button>
     </form>
     <script>
         document.getElementById('hotChocolateForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+    e.preventDefault();
 
-            var formData = {
-                name: document.getElementById('name').value,
-                location: document.getElementById('location').value,
-                richness: document.getElementById('richness').value,
-                sweetness: document.getElementById('sweetness').value,
-                creaminess: document.getElementById('creaminess').value,
-                bitterness: document.getElementById('bitterness').value,
-                temperature: document.getElementById('temperature').value
-            };
+    // Change the button color
+    var submitButton = document.getElementById('submitButton');
+    var originalColor = submitButton.style.backgroundColor; // Store the original color
 
-            fetch('https://script.google.com/macros/s/AKfycbwmuLXnM2OoeeQ5RkgsPzUTEtpyzyLUHgsxtpnKeOGrxBH_bd3v3dAaztqqteL6hC8/exec', {
-                method: 'POST',
-                body: JSON.stringify(formData)
-            }).then(response => {
-                alert("Form submitted successfully!");
-            }).catch(error => {
-                alert("There was an error submitting the form.");
-            });
-        });
+    submitButton.style.backgroundColor = '#ff0000'; // Change to red or any color you prefer
+
+    // Handle form submission
+    var formData = {
+        name: document.getElementById('name').value,
+        location: document.getElementById('location').value,
+        richness: document.getElementById('richness').value,
+        sweetness: document.getElementById('sweetness').value,
+        creaminess: document.getElementById('creaminess').value,
+        bitterness: document.getElementById('bitterness').value,
+        temperature: document.getElementById('temperature').value
+    };
+
+    fetch('https://script.google.com/macros/s/AKfycbwmuLXnM2OoeeQ5RkgsPzUTEtpyzyLUHgsxtpnKeOGrxBH_bd3v3dAaztqqteL6hC8/exec', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(response => {
+        alert("Form submitted successfully!");
+        // Revert button color after 2 seconds
+        setTimeout(function() {
+            submitButton.style.backgroundColor = originalColor;
+        }, 2000); // 2000 milliseconds = 2 seconds
+    }).catch(error => {
+        alert("There was an error submitting the form.");
+        // Optionally revert button color on error
+        submitButton.style.backgroundColor = originalColor;
+    });
+});
     </script>
 </div>
 
