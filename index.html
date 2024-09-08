@@ -6,6 +6,37 @@
     <title>Hot Chocolate Tasting</title>
     <!-- Link to the external CSS file -->
     <style>
+        .dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        .dark-mode .container {
+            background-color: #1e1e1e;
+        }
+
+        .dark-mode form label {
+            color: #e0e0e0;
+        }
+
+        .dark-mode input, .dark-mode select, .dark-mode button {
+            background-color: #333;
+            border: 1px solid #555;
+            color: #e0e0e0;
+        }
+
+        .dark-mode input:focus, .dark-mode select:focus {
+            border-color: #888;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .dark-mode button {
+            background-color: #444;
+        }
+
+        .dark-mode button:hover {
+            background-color: #333;
+        }
         body {
             font-family: 'Verdana', sans-serif;
             background-color: #f0f0f5;
@@ -84,6 +115,10 @@
     </style>
 </head>
 <body>
+<div class="dark-mode-toggle">
+    <label for="darkModeSwitch">Dark Mode:</label>
+    <input type="checkbox" id="darkModeSwitch">
+</div>
 
 <div class="container">
     <h1>Hot Chocolate Tasting</h1>
@@ -138,6 +173,26 @@
             }).catch(error => {
                 alert("There was an error submitting the form.");
             });
+        });
+    </script>
+    <script>
+        const darkModeSwitch = document.getElementById('darkModeSwitch');
+    
+        // Check if dark mode is saved in localStorage
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            darkModeSwitch.checked = true;
+        }
+    
+        // Toggle dark mode
+        darkModeSwitch.addEventListener('change', () => {
+            if (darkModeSwitch.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'disabled');
+            }
         });
     </script>
 </div>
