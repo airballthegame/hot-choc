@@ -313,7 +313,7 @@
                 temperature: document.getElementById('temperature').value
             };
 
-            fetch('https://script.google.com/macros/s/AKfycbw07wVSqtjI7l_iC9PkkW-7wcTXmfpMXlLBlfgwph-I0a1fG4azj6R0mW3O58yFeVU/exec', {
+            fetch('https://script.google.com/macros/s/AKfycbzhNI2GvZBFs7p2mVX2CpZv1ydPLvaMftoqj7dJECy58K-nkOMkD8qPeYplcA3eKLI/exec', {
                 method: 'POST',
                 body: JSON.stringify(formData)
             }).then(response => {
@@ -364,7 +364,7 @@
 
         // Fetch and display data from Google Sheets in the "results" tab
         // Fetch and display data from Google Sheets in the "results" tab
-        fetch("https://script.google.com/macros/s/AKfycbw07wVSqtjI7l_iC9PkkW-7wcTXmfpMXlLBlfgwph-I0a1fG4azj6R0mW3O58yFeVU/exec")
+        fetch("https://script.google.com/macros/s/AKfycbzhNI2GvZBFs7p2mVX2CpZv1ydPLvaMftoqj7dJECy58K-nkOMkD8qPeYplcA3eKLI/exec")
             .then(response => response.json())
             .then(data => {
                 // Assuming the data is an array of objects
