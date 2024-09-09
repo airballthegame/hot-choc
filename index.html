@@ -37,6 +37,69 @@
         .dark-mode button:hover {
             background-color: #333;
         }
+        /* General Styles */
+        body {
+            font-family: 'Verdana', sans-serif;
+            background-color: #f0f0f5;
+            margin: 0;
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .toggle-label {
+            margin-right: 10px;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 34px;
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: #ddd;
+            border-radius: 34px;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.3s;
+        }
+
+        /* Dot position */
+        .toggle-switch::before {
+            content: "";
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background-color: white;
+            left: 4px;
+            top: 4px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        /* Toggle switch checked state */
+        .toggle-switch:checked {
+            background-color: #5a3e36;
+        }
+
+        .toggle-switch:checked::before {
+            transform: translateX(26px);
+        }
+
+        /* Dark Mode Styles */
+        .dark-mode .toggle-switch {
+            background-color: #555;
+        }
+
+        .dark-mode .toggle-switch:checked {
+            background-color: #888;
+        }
+
         body {
             font-family: 'Verdana', sans-serif;
             background-color: #f0f0f5;
@@ -115,12 +178,13 @@
     </style>
 </head>
 <body>
+
+
+<div class="container">
     <div class="dark-mode-toggle">
         <label for="darkModeSwitch">Dark Mode:</label>
         <input type="checkbox" id="darkModeSwitch">
     </div>
-
-<div class="container">
     <h1>Hot Chocolate Tasting</h1>
 
     <form id="hotChocolateForm" method="POST">
