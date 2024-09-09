@@ -220,6 +220,27 @@
             transform: translateY(0);
         }
 
+        .tab.active {
+            background-color: #5a3e36;
+            color: white;
+        }
+
+        .tab-content {
+            position: absolute;
+            width: 100%;
+            max-width: 600px;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            opacity: 0;
+            transform: translateX(100%);
+            z-index: -1;
+        }
+
+        .tab-content.active {
+            opacity: 1;
+            transform: translateX(0);
+            z-index: 1;
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -234,6 +255,7 @@
             align-content: center;
             align-items: center;
         }
+
     </style>
 </head>
 <body>
@@ -345,19 +367,23 @@
 
     <script>
         // JavaScript to handle tab switching
-        function openTab(event, tabName) {
+        function openTab(tabName) {
+            // Hide all tab content with transition
             var i, tabContent, tabLinks;
             tabContent = document.getElementsByClassName("tab-content");
             for (i = 0; i < tabContent.length; i++) {
                 tabContent[i].classList.remove("active");
             }
 
+            // Remove 'active' class from all tab buttons
             tabLinks = document.getElementsByClassName("tab");
             for (i = 0; i < tabLinks.length; i++) {
                 tabLinks[i].classList.remove("active");
             }
 
-            document.getElementById(tabName).classList.add("active");
+            // Show the selected tab content and highlight the clicked tab
+            var selectedTabContent = document.getElementById(tabName);
+            selectedTabContent.classList.add("active");
             event.currentTarget.classList.add("active");
         }
 
