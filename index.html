@@ -123,17 +123,6 @@
         }
 
         /* Dot position */
-        .toggle-switch::before {
-            content: "";
-            position: absolute;
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            background-color: white;
-            left: 4px;
-            top: 3px;
-            transition: transform 0.3s, background-color 0.3s;
-        }
 
         /* Toggle switch checked state */
         .toggle-switch:checked {
@@ -156,7 +145,7 @@
         body {
             font-family: 'Verdana', sans-serif;
             background-color: #f0f0f5;
-            margin: 30px
+            margin: 30px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -323,7 +312,7 @@
                 temperature: document.getElementById('temperature').value
             };
 
-            fetch('https://script.google.com/macros/s/AKfycbxIPKsE8UT4S_nxYqD1rp8deZJz5UrvZewKzlnfbXT4OJgmo2yxpLBZeAhHbalORw/exec', {
+            fetch('https://script.google.com/macros/s/AKfycbw07wVSqtjI7l_iC9PkkW-7wcTXmfpMXlLBlfgwph-I0a1fG4azj6R0mW3O58yFeVU/exec', {
                 method: 'POST',
                 body: JSON.stringify(formData)
             }).then(response => {
@@ -376,7 +365,8 @@
         }
 
         // Fetch and display data from Google Sheets in the "results" tab
-        fetch('https://script.google.com/macros/s/AKfycbxIPKsE8UT4S_nxYqD1rp8deZJz5UrvZewKzlnfbXT4OJgmo2yxpLBZeAhHbalORw/exec')
+        // Fetch and display data from Google Sheets in the "results" tab
+        fetch("https://script.google.com/macros/s/AKfycbw07wVSqtjI7l_iC9PkkW-7wcTXmfpMXlLBlfgwph-I0a1fG4azj6R0mW3O58yFeVU/exec')
             .then(response => response.json())
             .then(data => {
                 const tableBody = document.querySelector('#resultsTable tbody');
@@ -392,7 +382,7 @@
                         <td>${row.creaminess}</td>
                         <td>${row.bitterness}</td>
                         <td>${row.temperature}</td>
-                    `;
+                    `;  // Close the row correctly
                     tableBody.appendChild(tr);
                 });
             })
