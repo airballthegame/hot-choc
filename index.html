@@ -1,61 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="favicon.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hot Chocolate Tasting</title>
     <!-- Link to the external CSS file -->
     <style>
+        .dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        .dark-mode .container {
+            background-color: #1e1e1e;
+        }
+
+        .dark-mode form label {
+            color: #e0e0e0;
+        }
+
+        .dark-mode input, .dark-mode select, .dark-mode button {
+            background-color: #333;
+            border: 1px solid #555;
+            color: #e0e0e0;
+        }
+
+        .dark-mode input:focus, .dark-mode select:focus {
+            border-color: #888;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .dark-mode button {
+            background-color: #444;
+        }
+
+        .dark-mode button:hover {
+            background-color: #333;
+        }
+        body {
+            font-family: 'Verdana', sans-serif;
+            background-color: #f0f0f5;
+            align-items: center;
+            margin: 0;
+        }
+
         .container {
-            margin: 20px;
             width: 100%;
             height: 100vh;
             background-color: #fff;
             padding: 30px;
             animation: fadeIn 1s ease-in-out;
-        }
-        .toggle-container {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-        }
-
-        .toggle-label {
-            margin-right: 10px;
-            font-size: 1rem;
-            color: #333;
-        }
-
-        .toggle-switch {
-            position: relative;
-            width: 60px;
-            height: 34px;
-            -webkit-appearance: none;
-            appearance: none;
-            background-color: #ddd;
-            border-radius: 34px;
-            cursor: pointer;
-            outline: none;
-            transition: background-color 0.3s;
-        }
-
-        .toggle-switch:checked {
-            background-color: #5a3e36;
-        }
-
-        .toggle-switch:checked::before {
-            transform: translateX(26px);
-        }
-
-        .toggle-switch::before {
-            content: "";
-            position: absolute;
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            background-color: white;
-            transition: transform 0.3s;
         }
 
         h1 {
@@ -121,14 +115,14 @@
     </style>
 </head>
 <body>
-
+    <div class="dark-mode-toggle">
+        <label for="darkModeSwitch">Dark Mode:</label>
+        <input type="checkbox" id="darkModeSwitch">
+    </div>
 
 <div class="container">
     <h1>Hot Chocolate Tasting</h1>
-    <div class="toggle-container">
-        <label for="darkModeSwitch" class="toggle-label">Dark Mode:</label>
-        <input type="checkbox" id="darkModeSwitch" class="toggle-switch">
-    </div>
+
     <form id="hotChocolateForm" method="POST">
         <!-- User's Name -->
         <label for="name">Your Name:</label>
@@ -181,26 +175,6 @@
             });
         });
     </script>
-    <script>
-    const darkModeSwitch = document.getElementById('darkModeSwitch');
-
-    // Check if dark mode is saved in localStorage
-    if (localStorage.getItem('darkMode') === 'enabled') {
-        document.body.classList.add('dark-mode');
-        darkModeSwitch.checked = true;
-    }
-
-    // Toggle dark mode
-    darkModeSwitch.addEventListener('change', () => {
-        if (darkModeSwitch.checked) {
-            document.body.classList.add('dark-mode');
-            localStorage.setItem('darkMode', 'enabled');
-        } else {
-            document.body.classList.remove('dark-mode');
-            localStorage.setItem('darkMode', 'disabled');
-        }
-    });
-</script>
 </div>
 
 </body>
