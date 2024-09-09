@@ -220,27 +220,6 @@
             transform: translateY(0);
         }
 
-        .tab.active {
-            background-color: #5a3e36;
-            color: white;
-        }
-
-        .tab-content {
-            position: absolute;
-            width: 100%;
-            max-width: 600px;
-            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-            opacity: 0;
-            transform: translateX(100%);
-            z-index: -1;
-        }
-
-        .tab-content.active {
-            opacity: 1;
-            transform: translateX(0);
-            z-index: 1;
-        }
-
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -254,7 +233,7 @@
         .hotChocolateForm {
             align-content: center;
             align-items: center;
-        }
+        
 
     </style>
 </head>
@@ -265,8 +244,8 @@
     <div class="container">
         <!-- Tabs for switching between submission form and results -->
         <div class="tab-container">
-            <button class="tab active" onclick="openTab('submit')">Submit Data</button>
-            <button class="tab" onclick="openTab('results')">View Results</button>
+            <button class="tab active" onclick="openTab(event, 'submit')">Submit Data</button>
+            <button class="tab" onclick="openTab(event, 'results')">View Results</button>
         </div>
 
         <!-- Tab Content -->
@@ -367,23 +346,19 @@
 
     <script>
         // JavaScript to handle tab switching
-        function openTab(tabName) {
-            // Hide all tab content with transition
+        function openTab(event, tabName) {
             var i, tabContent, tabLinks;
             tabContent = document.getElementsByClassName("tab-content");
             for (i = 0; i < tabContent.length; i++) {
                 tabContent[i].classList.remove("active");
             }
 
-            // Remove 'active' class from all tab buttons
             tabLinks = document.getElementsByClassName("tab");
             for (i = 0; i < tabLinks.length; i++) {
                 tabLinks[i].classList.remove("active");
             }
 
-            // Show the selected tab content and highlight the clicked tab
-            var selectedTabContent = document.getElementById(tabName);
-            selectedTabContent.classList.add("active");
+            document.getElementById(tabName).classList.add("active");
             event.currentTarget.classList.add("active");
         }
 
