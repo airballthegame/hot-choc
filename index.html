@@ -37,6 +37,59 @@
         .dark-mode button:hover {
             background-color: #333;
         }
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        /* Individual tab button */
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #ddd;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        table {
+            width: 100%;
+            max-width: 600px;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th, table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #5a3e36;
+            color: white;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Active tab styling */
+        .tab.active {
+            background-color: #5a3e36;
+            color: white;
+        }
+
+        /* Tab content */
+        .tab-content {
+            display: none; /* Hide all tab content initially */
+        }
+
+        .tab-content.active {
+            display: block; /* Show the active tab content */
+        }
         /* General Styles */
         body {
             font-family: 'Verdana', sans-serif;
@@ -197,42 +250,65 @@
 <body>
 
 
-<div class="container">
-    <div class="toggle-container">
-        <label for="darkModeSwitch" class="toggle-label">Dark Mode</label>
-        <input type="checkbox" id="darkModeSwitch" class="toggle-switch">
+
+    <div class="container">
+        <!-- Tabs for switching between submission form and results -->
+        <div class="tab-container">
+            <button class="tab active" onclick="openTab('submit')">Submit Data</button>
+            <button class="tab" onclick="openTab('results')">View Results</button>
+        </div>
+
+        <!-- Tab Content -->
+        <div id="submit" class="tab-content active">
+            <!-- Submit form -->
+            <h1>Submit Hot Chocolate Tasting</h1>
+            <form id="hotChocolateForm" method="POST">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+                <label for="location">Hot Chocolate Restaurant Name</label>
+                <input type="text" id="location" name="location" placeholder="e.g. Caribou Coffee" required>
+
+                <label for="richness">Richness (1-10):</label>
+                <input type="number" id="richness" name="richness" min="1" max="10" required>
+
+                <label for="sweetness">Sweetness (1-10):</label>
+                <input type="number" id="sweetness" name="sweetness" min="1" max="10" required>
+
+                <label for="creaminess">Creaminess (1-10):</label>
+                <input type="number" id="creaminess" name="creaminess" min="1" max="10" required>
+
+                <label for="bitterness">Speed (1-10):</label>
+                <input type="number" id="bitterness" name="bitterness" min="1" max="10" required>
+
+                <label for="temperature">Temperature (1-10):</label>
+                <input type="number" id="temperature" name="temperature" min="1" max="10" required>
+
+                <button type="submit">Submit Form</button>
+            </form>
+        </div>
+
+        <!-- Results Tab -->
+        <div id="results" class="tab-content">
+            <h1>Hot Chocolate Tasting Results</h1>
+            <table id="resultsTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>Richness</th>
+                        <th>Sweetness</th>
+                        <th>Creaminess</th>
+                        <th>Speed</th>
+                        <th>Temperature</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data from Google Sheet will be inserted here -->
+                </tbody>
+            </table>
+        </div>
     </div>
-    <h1>Hot Chocolate Tasting</h1>
-
-    <form id="hotChocolateForm" method="POST">
-        <!-- User's Name -->
-        <label for="name">Your Name:</label>
-        <input type="text" id="name" name="name" placeholder="Enter your name" required>
-
-        <!-- Restaurant Location -->
-        <label for="location">Hot Chocolate Restaurant Name</label>
-        <input type="text" id="location" name="location" placeholder="just the name of the place, e.g. Caribou Coffee" required>
-
-        <!-- Hot Chocolate Descriptors -->
-        <label for="richness">Richness (1-10):</label>
-        <input type="number" id="richness" name="richness" min="1" max="10" required>
-
-        <label for="sweetness">Sweetness (1-10):</label>
-        <input type="number" id="sweetness" name="sweetness" min="1" max="10" required>
-
-        <label for="creaminess">Creaminess (1-10):</label>
-        <input type="number" id="creaminess" name="creaminess" min="1" max="10" required>
-
-        <label for="bitterness">Speed (how fast was it made?) (1-10):</label>
-        <input type="number" id="bitterness" name="bitterness" min="1" max="10" required>
-
-        <label for="temperature">Temperature (1-10):</label>
-        <input type="number" id="temperature" name="temperature" min="1" max="10" required>
-
-        <!-- Submit Button -->
-        <button type="submit">Submit Form</button>
-    </form>
-
     <script>
         document.getElementById('hotChocolateForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -247,7 +323,7 @@
                 temperature: document.getElementById('temperature').value
             };
 
-            fetch('https://script.google.com/macros/s/AKfycbwmuLXnM2OoeeQ5RkgsPzUTEtpyzyLUHgsxtpnKeOGrxBH_bd3v3dAaztqqteL6hC8/exec', {
+            fetch('https://script.google.com/macros/s/AKfycbxIPKsE8UT4S_nxYqD1rp8deZJz5UrvZewKzlnfbXT4OJgmo2yxpLBZeAhHbalORw/exec', {
                 method: 'POST',
                 body: JSON.stringify(formData)
             }).then(response => {
@@ -276,6 +352,53 @@
                 localStorage.setItem('darkMode', 'disabled');
             }
         });
+    </script>
+
+    <script>
+        // JavaScript to handle tab switching
+        function openTab(tabName) {
+            // Hide all tab content
+            var i, tabContent, tabLinks;
+            tabContent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove("active");
+            }
+
+            // Remove 'active' class from all tab buttons
+            tabLinks = document.getElementsByClassName("tab");
+            for (i = 0; i < tabLinks.length; i++) {
+                tabLinks[i].classList.remove("active");
+            }
+
+            // Show the selected tab content and highlight the clicked tab
+            document.getElementById(tabName).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
+
+        // Fetch and display data from Google Sheets in the "results" tab
+        fetch('https://script.google.com/macros/s/AKfycbxIPKsE8UT4S_nxYqD1rp8deZJz5UrvZewKzlnfbXT4OJgmo2yxpLBZeAhHbalORw/exec')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.querySelector('#resultsTable tbody');
+                tableBody.innerHTML = ""; // Clear existing rows
+
+                data.forEach(row => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${row.name}</td>
+                        <td>${row.location}</td>
+                        <td>${row.richness}</td>
+                        <td>${row.sweetness}</td>
+                        <td>${row.creaminess}</td>
+                        <td>${row.bitterness}</td>
+                        <td>${row.temperature}</td>
+                    `;
+                    tableBody.appendChild(tr);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching Google Sheets data:', error);
+            });
     </script>
 </div>
 
