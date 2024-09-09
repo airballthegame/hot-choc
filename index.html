@@ -243,8 +243,8 @@
     <div class="container">
         <!-- Tabs for switching between submission form and results -->
         <div class="tab-container">
-            <button class="tab active" onclick="openTab('submit')">Submit Data</button>
-            <button class="tab" onclick="openTab('results')">View Results</button>
+            <button class="tab active" onclick="openTab(event, 'submit')">Submit Data</button>
+            <button class="tab" onclick="openTab(event, 'results')">View Results</button>
         </div>
 
         <!-- Tab Content -->
@@ -345,28 +345,25 @@
 
     <script>
         // JavaScript to handle tab switching
-        function openTab(tabName) {
-            // Hide all tab content
+        function openTab(event, tabName) {
             var i, tabContent, tabLinks;
             tabContent = document.getElementsByClassName("tab-content");
             for (i = 0; i < tabContent.length; i++) {
                 tabContent[i].classList.remove("active");
             }
 
-            // Remove 'active' class from all tab buttons
             tabLinks = document.getElementsByClassName("tab");
             for (i = 0; i < tabLinks.length; i++) {
                 tabLinks[i].classList.remove("active");
             }
 
-            // Show the selected tab content and highlight the clicked tab
             document.getElementById(tabName).classList.add("active");
             event.currentTarget.classList.add("active");
         }
 
         // Fetch and display data from Google Sheets in the "results" tab
         // Fetch and display data from Google Sheets in the "results" tab
-        fetch("https://script.google.com/macros/s/AKfycbw07wVSqtjI7l_iC9PkkW-7wcTXmfpMXlLBlfgwph-I0a1fG4azj6R0mW3O58yFeVU/exec')
+        fetch("https://script.google.com/macros/s/AKfycbw07wVSqtjI7l_iC9PkkW-7wcTXmfpMXlLBlfgwph-I0a1fG4azj6R0mW3O58yFeVU/exec'")
             .then(response => response.json())
             .then(data => {
                 const tableBody = document.querySelector('#resultsTable tbody');
