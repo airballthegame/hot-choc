@@ -181,9 +181,9 @@
 
 
 <div class="container">
-    <div class="dark-mode-toggle">
-        <label for="darkModeSwitch">Dark Mode:</label>
-        <input type="checkbox" id="darkModeSwitch">
+    <div class="toggle-container">
+        <label for="darkModeSwitch" class="toggle-label">Dark Mode:</label>
+        <input type="checkbox" id="darkModeSwitch" class="toggle-switch">
     </div>
     <h1>Hot Chocolate Tasting</h1>
 
@@ -237,6 +237,26 @@
             }).catch(error => {
                 alert("There was an error submitting the form.");
             });
+        });
+    </script>
+    <script>
+        const darkModeSwitch = document.getElementById('darkModeSwitch');
+
+        // Check if dark mode is saved in localStorage
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            darkModeSwitch.checked = true;
+        }
+
+        // Toggle dark mode
+        darkModeSwitch.addEventListener('change', () => {
+            if (darkModeSwitch.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'disabled');
+            }
         });
     </script>
 </div>
