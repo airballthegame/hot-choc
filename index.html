@@ -163,6 +163,9 @@
             padding: 30px;
             animation: fadeIn 1s ease-in-out;
         }
+        .musicButton {
+            width: 50px
+        }
 
         h1 {
             text-align: center;
@@ -243,7 +246,7 @@
 
     <div class="container">
         <audio id="audioPlayer" src="hothothotchocolate.mp3"></audio>
-        <button id="playAudioButton">♫</button>
+        <button class = "musicButton" id="playAudioButton">♫</button>
         <!-- Tabs for switching between submission form and results -->
         <div class="tab-container">
             <button class="tab active" onclick="openTab(event, 'submit')">Submit Data</button>
